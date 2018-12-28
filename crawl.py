@@ -9,12 +9,15 @@ headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36' 
     }
 
-for page in range(1):
-    try:
-        response = requests.get('https://www.qgsydw.com/qgsydwzp/ksbm/zwsearch.dox', 
-            params={'keywords' : '', 'selectgws' : '1', 'p': page}, headers = headers)
-        response.encoding = "GB2312"
-        response.raise_for_status()
-        soup.handleResponse(response.text)
-    except requests.RequestException as ex:
-        print('response status_code not as expected: ' + response.url, sep='\n')
+def getPosition():
+    for page in range(1):
+        try:
+            response = requests.get('https://www.qgsydw.com/qgsydwzp/ksbm/zwsearch.dox', 
+                params={'keywords' : '', 'selectgws' : '1', 'p': page}, headers = headers)
+            response.encoding = "GB2312"
+            response.raise_for_status()
+            soup.handlePosition(response.text)
+        except requests.RequestException as ex:
+            print('response status_code not as expected: ' + response.url, sep='\n')
+
+getPosition()
